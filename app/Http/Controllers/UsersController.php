@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Auth;
@@ -29,8 +30,10 @@ class UsersController extends Controller
     public function index()
     {
         $userMenus = new UserMenu;
+        $today = Carbon::now();
         $usermenus = $userMenus::with('menu')
             ->where('user_id', Auth::user()->id)
+            ->where('ate_at', $today->toDateString())
             ->get();
         return view('users.index', compact('usermenus'));
     }

@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Menu;
 use App\UserMenu;
 use Log;
+use Carbon\Carbon;
 
 class MenusController extends Controller
 {
@@ -39,8 +40,10 @@ class MenusController extends Controller
     public function create(Request $request)
     {
         $usermenu = new UserMenu;
+        $today = Carbon::now();
         $usermenu->user_id = Auth::user()->id;
         $usermenu->menu_id = $request->id;
+        $usermenu->ate_at = $today->toDateString();
         $usermenu->save();
 
         return redirect()->to('menus/index');

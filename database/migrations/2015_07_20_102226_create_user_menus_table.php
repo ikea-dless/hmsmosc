@@ -16,6 +16,7 @@ class CreateUserMenusTable extends Migration
             $table->increments('id');
             $table->integer('menu_id');
             $table->integer('user_id');
+            $table->date('ate_at');
             $table->timestamps();
         });
     }
