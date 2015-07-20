@@ -26,6 +26,13 @@ Route::group(array('prefix' => 'menus'), function() {
     ]);
 });
 
+Route::group(array('prefix' => 'users'), function() {
+   Route::get('/index', [
+       'uses' => 'UsersController@index', 'as' => 'users.index',
+       'middleware' => 'auth'
+    ]);
+});
+
 Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');
 Route::get('auth/logout', 'Auth\AuthController@getLogout');
