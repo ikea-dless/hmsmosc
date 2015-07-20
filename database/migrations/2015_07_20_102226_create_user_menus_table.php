@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMenusTable extends Migration
+class CreateUserMenusTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,11 +12,10 @@ class CreateMenusTable extends Migration
      */
     public function up()
     {
-        Schema::create('menus', function (Blueprint $table)
-        {
+        Schema::create('user_menus', function (Blueprint $table){
             $table->increments('id');
-            $table->string('name');
-            $table->integer('cost');
+            $table->integer('menu_id');
+            $table->integer('user_id');
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ class CreateMenusTable extends Migration
      */
     public function down()
     {
-        Schema::drop('menus');
+        Schema::drop('user_menus');
     }
 }
