@@ -14,6 +14,18 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::group(array('prefix' => 'menus'), function() {
+    Route::get('/index', [
+        'uses' => 'MenusController@index', 'as' => 'menus.index'
+    ]);
+    Route::post('/create', [
+        'uses' => 'MenusController@create',
+        'as' => 'menus.create',
+        'middleware' => 'auth'
+    ]);
+});
+
 Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');
 Route::get('auth/logout', 'Auth\AuthController@getLogout');

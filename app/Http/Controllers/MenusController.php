@@ -3,12 +3,23 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Menu;
+use App\UserMenu;
+use Log;
 
 class MenusController extends Controller
 {
+    protected $menu;
+
+    public function __construct(Menu $menu, UserMenu $usermenu)
+    {
+        $this->menu = $menu;
+        $this->usermenu = $usermenu;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +27,8 @@ class MenusController extends Controller
      */
     public function index()
     {
-        //
+        $menus = $this->menu->all();
+        return view('menus.index', compact('menus'));
     }
 
     /**
@@ -24,9 +36,14 @@ class MenusController extends Controller
      *
      * @return Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $usermenu = new UserMenu;
+        $usermenu->user_id = Auth::user()->id;
+        $usermenu->menu_id = $request->id;
+        $usermenu->save();
+
+        return redirect()->to('menus/index');
     }
 
     /**

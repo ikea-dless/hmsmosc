@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'ja',
 
     /*
     |--------------------------------------------------------------------------
@@ -144,6 +144,9 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
+        Illuminate\Hashing\HashServiceProvider::class,
+        Illuminate\Html\HtmlServiceProvider::class,
+        Illuminate\Mail\MailServiceProvider::class
 
     ],
 
@@ -192,7 +195,12 @@ return [
         'URL'       => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
-        'Debugbar' => Barryvdh\Debugbar\Facade::class
+        'Debugbar'  => Barryvdh\Debugbar\Facade::class,
+        'File'      => Illuminate\Support\Facades\File::class,
+        'Form'      => Illuminate\Html\FormFacade::class,
+        'Hash'      => Illuminate\Support\Facades\Hash::class,
+        'HTML'      => Illuminate\Html\HtmlFacade::class,
+        'Input'     => Illuminate\Support\Facades\Input::class
 
     ],
 
