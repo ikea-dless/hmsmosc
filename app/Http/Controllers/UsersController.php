@@ -31,11 +31,21 @@ class UsersController extends Controller
     {
         $userMenus = new UserMenu;
         $today = Carbon::now();
+        $user = Auth::user();
         $usermenus = $userMenus::with('menu')
-            ->where('user_id', Auth::user()->id)
-            ->where('ate_at', $today->toDateString())
+            ->where('user_id', $user->id)
+//            ->where('ate_at', $today->toDateString())
             ->get();
-        return view('users.index', compact('usermenus'));
+        $todaycost = 0;
+        $allcost = 0;
+        foreach ($usermenus as $usermenu) {
+            $allcost += $usermenu->menu["cost"];
+            if ($usermenu["ate_at"] == $today->toDateString()) {
+                $todaycost += $usermenu->menu["cost"];
+            }
+        }
+
+        return view('users.index', compact('allcost', 'user', 'todaycost'));
     }
 
     /**

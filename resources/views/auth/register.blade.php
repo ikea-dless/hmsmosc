@@ -1,27 +1,32 @@
+@extends('app')
+
+@section('content')
 <form method="POST" action="/auth/register">
     {!! csrf_field() !!}
+    <div class="col-md-6">
+        <div class="form-group">
+            名前
+            <input type="text" name="name" class="form-control" value="{{ old('name') }}">
+        </div>
 
-    <div>
-        Name
-        <input type="text" name="name" value="{{ old('name') }}">
-    </div>
+        <div class="form-group">
+            メールアドレス
+            <input type="email" name="email" class="form-control" value="{{ old('email') }}">
+        </div>
 
-    <div>
-        Email
-        <input type="email" name="email" value="{{ old('email') }}">
-    </div>
+        <div class="form-group">
+            パスワード
+            <input type="password" name="password" class="form-control">
+        </div>
 
-    <div>
-        Password
-        <input type="password" name="password">
-    </div>
+        <div class="form-group">
+            パスワード確認
+            <input type="password" name="password_confirmation" class="form-control"`>
+        </div>
 
-    <div>
-        Confirm Password
-        <input type="password" name="password_confirmation">
-    </div>
-
-    <div>
-        <button type="submit">Register</button>
+        <div class="form-group">
+            <button type="submit" class="btn btn-success btn-lg">新規登録</input>
+        </div>
     </div>
 </form>
+@endsection

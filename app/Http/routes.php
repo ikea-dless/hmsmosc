@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'MenusController@index');
 
 Route::group(array('prefix' => 'menus'), function() {
     Route::get('/index', [

@@ -44,7 +44,9 @@ class MenusController extends Controller
         $usermenu->user_id = Auth::user()->id;
         $usermenu->menu_id = $request->id;
         $usermenu->ate_at = $today->toDateString();
-        $usermenu->save();
+        if ($usermenu->save()) {
+            \Session::flash('flash_message', '保存しました');
+        }
 
         return redirect()->to('menus/index');
     }
